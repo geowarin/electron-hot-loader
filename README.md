@@ -92,8 +92,8 @@ Critiques and ideas are warmly welcomed so do not hesitate to open issues and su
 
 ## Roadmap
 
--[] Write some tests
--[] Welcom feedback and ideas
+- [ ] Write some tests
+- [ ] Welcome feedback and ideas
 
 ## Example
 
