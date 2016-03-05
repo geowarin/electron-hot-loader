@@ -1,5 +1,9 @@
 # Electron-hot-loader
 
+[![npm](https://img.shields.io/npm/v/electron-hot-loader.svg)](https://www.npmjs.com/package/electron-hot-loader)
+
+Hot reloading for React components in electron without babel nor webpack
+
 This package leverages `react-proxy` and electron's access to the file system to enable
 hot reloading on React components at really high speed.
 
