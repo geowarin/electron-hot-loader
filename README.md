@@ -41,7 +41,7 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 When a file is updated on your disk, the proxies will update and a render will be forced on the
 root component.
 
-This is very similar to what `react-transform-hmr` but without dependencies to babel or webpack.
+This is very similar to what `react-transform-hmr` does but without dependencies to babel or webpack.
 
 For your tests you can add this to your mocha config, it will compile your jsx without instrumenting them:
 
