@@ -72,7 +72,7 @@ them in your application.
 
 Since we have access to all the compiled components, we can use `esprima` to get the AST of each one.
 
-The `ReactDOM.render` method as a distinctive signature that we can use to identify the root of our application.
+The `ReactDOM.render` method has a distinctive signature that we can use to identify the root of our application.
 
 When a user component is included in a JSX file, it is compiled to `React.createElement()`.
 We can wrap all those calls in a `register()` method, keep track of all the components created that way and wrap them with `react-proxy`.
