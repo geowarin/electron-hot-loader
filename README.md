@@ -1,7 +1,7 @@
 # Electron-hot-loader
 
-This package leverages `react-proxy` and the electron's access to the file system to enable
-hot reloading on React component at really high speed.
+This package leverages `react-proxy` and electron's access to the file system to enable
+hot reloading on React components at really high speed.
 
 ## Setup
 
