@@ -3,6 +3,10 @@
 This package leverages `react-proxy` and electron's access to the file system to enable
 hot reloading on React components at really high speed.
 
+![Demo of electron-hot-boilerplate](http://i.imgur.com/soKDmIq.gif)
+
+Demo: [electron-hot-boilerplate](https://github.com/geowarin/electron-hot-boilerplate)
+
 ## Setup
 
 Put the following code at the top of `index.js`, the javascript entry point of your application in the browser.
