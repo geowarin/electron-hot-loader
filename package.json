@@ -1,0 +1,32 @@
+{
+  "name": "electron-hot",
+  "version": "0.1.0",
+  "description": "Hot reloading for React components in electron without babel nor webpack",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geowarin/electron-hot.git"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "hot"
+  ],
+  "author": "Geoffroy Warin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geowarin/electron-hot/issues"
+  },
+  "homepage": "https://github.com/geowarin/electron-hot#readme",
+  "dependencies": {
+    "escodegen": "^1.8.0",
+    "esprima": "^2.7.2",
+    "estraverse": "^4.1.1",
+    "react-deep-force-update": "^2.0.1",
+    "react-proxy": "^2.0.3",
+    "watch-glob": "^0.1.3"
+  }
+}
