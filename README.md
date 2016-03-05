@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
     electronHot.watchCss(['assets/**/*.css']);
 }
 
-// We can now require your jsx files, they will be compiled for us
+// We can now require our jsx files, they will be compiled for us
 require('./index.jsx');
 
 // In production you should not rely on the auto-transform.
