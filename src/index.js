@@ -4,5 +4,6 @@ module.exports = {
     watchJsx: require('./watchJsx'),
     watchCss: require('./watchCss'),
     register: require('./register'),
-    registerRoot: require('./registerRoot')
+    registerRoot: require('./registerRoot'),
+    install: require('./jsxTransform').install
 };
