@@ -27,9 +27,9 @@ require('./index.jsx');
 
 ```
 
-`index.jsx` is just classic React initialization:
+The `index.jsx` file is just the classic React initialization:
 
-```
+```jsx
 const React = require('react');
 const ReactDOM = require('react-dom');
 const App = require('./ui/App.jsx');
