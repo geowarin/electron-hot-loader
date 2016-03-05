@@ -55,7 +55,7 @@ For your tests you can add this to your mocha config, it will compile your jsx w
 
 ## Goal
 
-Since electron both node and the browser, I figured we could try to experiment hot reloading without webpack
+Since electron is both node and a browser, I figured we could try to experiment hot reloading without webpack
 in this context.
 
 In its latest versions, node has access to a lot of [ES2015 features](https://nodejs.org/en/docs/es6/#ref-1). There seems to be
@@ -67,7 +67,7 @@ Also, as soon as those feature land in V8, we'll get them for free!
 ## Principle
 
 Installing `electron-hot-loader` will use [require extensions](https://nodejs.org/api/globals.html#globals_require_extensions)
-(don't pay attention to the deprecation warning, it' just for development, right?) to compile JSX files as your `require`
+(don't pay attention to the deprecation warning, it's just for development, right?) to compile JSX files as your `require`
 them in your application.
 
 Since we have access to all the compiled components, we can use `esprima` to get the AST of each one.
