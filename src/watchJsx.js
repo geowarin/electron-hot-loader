@@ -8,10 +8,10 @@ module.exports = function watchJsx(directories, options) {
     watchGlob(directories, opts, f => {
         const cachedProxy = global.proxies[f];
         if (cachedProxy) {
-            console.log('Hot reload', f);
+            console.debug('Hot reload', f);
             if (!global.rootInstance) {
                 console.warn('Root component has not been registered. Make sure that you use ReactDOM.render() in a JSX file' +
-                    ' and that require("./electron-hot/jsxTransform").install() has been called before any JSX is required.');
+                    ' and that require("./electron-hot-loader").install() has been called before any JSX is required.');
                 return;
             }
             delete require.cache[require.resolve(f)];
