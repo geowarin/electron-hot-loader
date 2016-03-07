@@ -63,7 +63,7 @@ For your tests you can add this to your mocha config, it will compile your jsx w
 
 ## Goal
 
-Since electron is both node and a browser, I figured we could try to experiment hot reloading without webpack
+Since electron is both node and a browser, I figured we could try experimenting hot reloading without webpack
 in this context.
 
 In its latest versions, node has access to a lot of [ES2015 features](https://nodejs.org/en/docs/es6/#ref-1). There seems to be
@@ -106,3 +106,9 @@ Critiques and ideas are warmly welcomed so do not hesitate to open issues and su
 ## Example
 
 Have a look at [electron-hot-boilerplate](https://github.com/geowarin/electron-hot-boilerplate) for a complete example. 
+
+## Thanks
+
+Dan Abramov and the [other commiters](https://github.com/gaearon/react-proxy/graphs/contributors) for their incredible work on [react-proxy](https://github.com/gaearon/react-proxy/).
+
+[Gurdas Nijor](https://github.com/gurdasnijor) for his [inspirational talk](https://www.youtube.com/watch?v=OZGgVxFxSIs) at ReactJS 2015 and his [repo](https://github.com/gurdasnijor/component-flow-loader) demonstrating esprima tranforms for React.
