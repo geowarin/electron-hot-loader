@@ -29,5 +29,9 @@
     "react-deep-force-update": "2.0.1",
     "react-proxy": "2.0.3",
     "watch-glob": "0.1.3"
+  },
+  "devDependencies": {
+    "expect": "^1.14.0",
+    "mocha": "^2.4.5"
   }
 }

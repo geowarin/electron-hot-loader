@@ -1,0 +1,4 @@
+-u bdd
+--recursive ./test/spec/**/*.js
+--full-trace
+--reporter spec
