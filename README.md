@@ -1,6 +1,7 @@
 # Electron-hot-loader
 
 [![npm](https://img.shields.io/npm/v/electron-hot-loader.svg)](https://www.npmjs.com/package/electron-hot-loader)
+[![Build Status](https://travis-ci.org/geowarin/electron-hot-loader.svg?branch=master)](https://travis-ci.org/geowarin/electron-hot-loader)
 
 Hot reloading for React components in electron without babel nor webpack
 
