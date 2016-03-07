@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "mocha",
-    "prebublish": "npm run test"
+    "prepublish": "npm run test"
   },
   "repository": {
     "type": "git",
