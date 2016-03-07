@@ -16,18 +16,26 @@ function expectTransformation(options, fileToTransform, actualFile) {
 describe('jsxTransform', () => {
 
     it('should transform a JSX file without instrumenting it', () => {
-	expectTransformation(
-	    {doNotInstrument: true, react: true},
-	    './test/fixtures/simple_transform_input.jsx',
-	    './test/fixtures/simple_transform_result.jsx'
-	)
+        expectTransformation(
+            {doNotInstrument: true, react: true},
+            './test/fixtures/simple_transform_input.jsx',
+            './test/fixtures/simple_transform_result.jsx'
+        )
     });
 
     it('should transform a JSX file and instrument it', () => {
-	expectTransformation(
-	    {react: true},
-	    './test/fixtures/transform_and_instrument_input.jsx',
-	    './test/fixtures/transform_and_instrument_result.jsx'
-	)
+        expectTransformation(
+            {react: true},
+            './test/fixtures/transform_and_instrument_input.jsx',
+            './test/fixtures/transform_and_instrument_result.jsx'
+        )
+    });
+
+    it('should transform and instrument React top level render', () => {
+        expectTransformation(
+            {react: true},
+            './test/fixtures/transform_and_instrument_top_level_input.jsx',
+            './test/fixtures/transform_and_instrument_top_level_result.jsx'
+        )
     });
 });
