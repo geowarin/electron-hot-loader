@@ -18,10 +18,10 @@ It is generally included in your `index.html`.
 
 ```js
 if (process.env.NODE_ENV === 'development') {
-    require('electron-hot-loader').install();
     const electronHot = require('electron-hot-loader');
+    electronHot.install();
     electronHot.watchJsx(['src/**/*.jsx']);
-    electronHot.watchCss(['assets/**/*.css']);
+    electronHot.watchCss(['src/assets/**/*.css']);
 }
 
 // We can now require our jsx files, they will be compiled for us
@@ -70,7 +70,7 @@ In its latest versions, node has access to a lot of [ES2015 features](https://no
 little need for a babel transpilation... If you can live with the lack of es6 modules and spread operators!
 
 In exchange, you will get a much better developer experience. Not much overhead or config and very fast reloads.
-Also, as soon as those feature land in V8, we'll get them for free!
+Also, as soon as those features land in V8, we'll get them for free!
 
 ## Principle
 
@@ -83,7 +83,7 @@ Since we have access to all the compiled components, we can use `esprima` to get
 The `ReactDOM.render` method has a distinctive signature that we can use to identify the root of our application.
 
 When a user component is included in a JSX file, it is compiled to `React.createElement()`.
-We can wrap all those calls in a `register()` method, keep track of all the components created that way and wrap them with `react-proxy`.
+We can wrap all those calls in a `register()` method, keep track of all the components created that way, and wrap them with `react-proxy`.
   
 Then, it is just a matter of watching the file system to know which components have been updated and force a re-render
 on them.
