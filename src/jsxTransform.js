@@ -1,22 +1,36 @@
 "use strict";
 
 var installed = false;
+var inlineSourceMap = require('jstransform/src/inline-source-map');
 
 module.exports = {
   install,
   transform
 };
 
-function transform(source, options) {
+function transform(filename, source, options) {
 
-  var jstransform = require('jstransform/simple');
-  var content = jstransform.transform(source, options).code;
-  if (options.doNotInstrument === true) {
-    return content;
+  const jsxVisitors = require('./transforms/react-jsx-visitors').visitorList;
+  const requireVisitor = require('./transforms/custom-require-visitor');
+  const topLevelVisitor = require('./transforms/top-level-render-visitor');
+  const jstransform = require('jstransform');
+
+  let visitors = [];
+  if (options.doNotInstrument !== true) {
+    visitors = visitors.concat(requireVisitor).concat(topLevelVisitor);
+  }
+  visitors = visitors.concat(jsxVisitors);
+
+  let result;
+  if (options.sourceMapInline) {
+    result = jstransform.transform(visitors, source, {sourceMap: true, filename: filename, doNotInstrument: options.doNotInstrument});
+    var map = inlineSourceMap(result.sourceMap, source, filename);
+    result.code = result.code + '\n' + map;
+  } else {
+    result = jstransform.transform(visitors, source, {doNotInstrument: options.doNotInstrument});
   }
 
-  var instrument = require('./instrument');
-  return instrument(content);
+  return result.code;
 }
 
 function install(options) {
@@ -31,19 +45,17 @@ function install(options) {
   options = options || {};
 
   Module._extensions[options.extension || '.jsx'] = function(module, filename) {
-    if (!options.hasOwnProperty('react')) {
-      options.react = true
-    }
     if (!options.hasOwnProperty('sourceMapInline')) {
       options.sourceMapInline = true
     }
 
     var content = fs.readFileSync(filename, 'utf8');
     try {
-      var instrumented = transform(content, options);
+      var instrumented = transform(filename, content, options);
       module._compile(instrumented, filename)
     } catch (e) {
-      console.error("Error compiling " + filename, e)
+      console.error("Error compiling " + filename, e);
+      console.error(e.stack);
     }
   };
 
