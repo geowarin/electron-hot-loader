@@ -28,17 +28,14 @@ function install(options) {
   var Module = require('module');
   var _require = Module.prototype.require;
 
-  if ('string' === typeof options) {
-    options = {
-      extension: options
-    }
-  }
-
   options = options || {};
 
   Module._extensions[options.extension || '.jsx'] = function(module, filename) {
     if (!options.hasOwnProperty('react')) {
       options.react = true
+    }
+    if (!options.hasOwnProperty('sourceMapInline')) {
+      options.sourceMapInline = true
     }
 
     var content = fs.readFileSync(filename, 'utf8');

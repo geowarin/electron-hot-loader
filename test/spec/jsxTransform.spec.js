@@ -31,6 +31,14 @@ describe('jsxTransform', () => {
         )
     });
 
+    it('should transform a JSX file, instrument it and keep the source map', () => {
+	expectTransformation(
+	    {react: true, sourceMapInline: true},
+	    './test/fixtures/transform_and_instrument_input.jsx',
+	    './test/fixtures/transform_and_instrument_result_with_source_map.jsx'
+	)
+    });
+
     it('should transform and instrument React top level render', () => {
         expectTransformation(
             {react: true},

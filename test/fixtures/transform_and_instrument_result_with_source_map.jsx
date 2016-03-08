@@ -1,0 +1,8 @@
+const React = require('react');
+var __electronHot__ = require('_electronHotLocation_');
+const OtherComponent = require('./OtherComponent.jsx');
+module.exports = class Component extends React.Component {
+    render() {
+	return React.createElement(__electronHot__.register(OtherComponent, require.resolve('./OtherComponent.jsx')), null);
+    }
+};    //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLEtBQUssR0FBRyxPQUFPLENBQUMsT0FBTyxDQUFDLENBQUM7QUFDL0IsTUFBTSxjQUFjLEdBQUcsT0FBTyxDQUFDLHNCQUFzQixDQUFDLENBQUM7O0FBRXZELE1BQU0sQ0FBQyxPQUFPLEdBQUcsTUFBTSxTQUFTLFNBQVMsS0FBSyxDQUFDLFNBQVMsQ0FBQztJQUNyRCxNQUFNLEdBQUc7S0FDUixPQUFPLG9CQUFDLGNBQWMsRUFBQSxJQUFBLENBQUcsQ0FBQTtLQUN6QjtDQUNKLENBQUMiLCJmaWxlIjoic291cmNlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgUmVhY3QgPSByZXF1aXJlKCdyZWFjdCcpO1xuY29uc3QgT3RoZXJDb21wb25lbnQgPSByZXF1aXJlKCcuL090aGVyQ29tcG9uZW50LmpzeCcpO1xuXG5tb2R1bGUuZXhwb3J0cyA9IGNsYXNzIENvbXBvbmVudCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gICAgcmVuZGVyKCkge1xuXHQgICAgcmV0dXJuIDxPdGhlckNvbXBvbmVudCAvPlxuICAgIH1cbn07XG4iXX0=

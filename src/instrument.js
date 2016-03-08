@@ -7,7 +7,7 @@ var t = require('./nodeTypes');
 var requireRegister = require.resolve('./index');
 
 module.exports = function instrument(source) {
-    var ast = esprima.parse(source);
+    var ast = esprima.parse(source, {attachComment: true});
 
     var firstRequireDeclarationIndex;
     var requireDeclarationsByName = {};
@@ -92,5 +92,5 @@ module.exports = function instrument(source) {
         }
     });
 
-    return escodegen.generate(ast);
+    return escodegen.generate(ast, {comment: true});
 };
