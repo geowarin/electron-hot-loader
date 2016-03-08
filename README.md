@@ -101,8 +101,10 @@ Critiques and ideas are warmly welcomed so do not hesitate to open issues and su
 
 ## Roadmap
 
-- [ ] Write some tests
+- [x] Write some tests
+- [ ] Write some more tests
 - [ ] Welcome feedback and ideas
+- [ ] Support source maps
 
 ## Example
 
