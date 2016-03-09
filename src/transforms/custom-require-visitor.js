@@ -19,7 +19,7 @@ function requireVisitor(traverse, node, path, state) {
 
     utils.catchup(node.range[1], state);
 }
-requireVisitor.test = function(node, path, state) {
+requireVisitor.test = function (node, path, state) {
     return (
         node.type === 'VariableDeclaration' &&
         node.declarations[0] &&

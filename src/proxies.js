@@ -18,8 +18,8 @@ function register(Component, location) {
     const proxy = createProxy.default(Component);
 
     if (!proxies[location]) {
-	console.debug('Registered proxy', location);
-	proxies[location] = proxy;
+        console.debug('Registered proxy', location);
+        proxies[location] = proxy;
     }
     return proxies[location].get();
 }
