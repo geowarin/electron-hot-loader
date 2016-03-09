@@ -104,7 +104,7 @@ Critiques and ideas are warmly welcomed so do not hesitate to open issues and su
 - [x] Write some tests
 - [ ] Write some more tests
 - [ ] Welcome feedback and ideas
-- [ ] Support source maps
+- [x] Support source maps
 
 ## Example
 
