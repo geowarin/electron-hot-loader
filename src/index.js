@@ -1,9 +1,5 @@
 "use strict";
 
-module.exports = {
-    watchJsx: require('./watchJsx'),
-    watchCss: require('./watchCss'),
-    register: require('./register'),
-    registerRoot: require('./registerRoot'),
-    install: require('./jsxTransform').install
-};
+module.exports.watchJsx = require('./watchJsx');
+module.exports.watchCss = require('./watchCss');
+module.exports.install = require('./jsxTransform').install;

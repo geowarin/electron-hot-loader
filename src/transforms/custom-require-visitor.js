@@ -1,6 +1,6 @@
 var jstransform = require('jstransform');
 var utils = require('jstransform/src/utils');
-var requireRegister = require.resolve('../index');
+var requireRegister = require.resolve('../proxies');
 
 function requireVisitor(traverse, node, path, state) {
 
