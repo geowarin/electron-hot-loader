@@ -23,9 +23,7 @@
   },
   "homepage": "https://github.com/geowarin/electron-hot-loader#readme",
   "dependencies": {
-    "escodegen": "1.8.0",
-    "esprima": "2.7.2",
-    "estraverse": "4.1.1",
+    "esprima-fb": "^15001.1.0-dev-harmony-fb",
     "jstransform": "11.0.3",
     "react-deep-force-update": "2.0.1",
     "react-proxy": "2.0.3",
