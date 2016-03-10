@@ -36,7 +36,11 @@ function findArgumentWhichMightBeComponent(node, state) {
     const args = [];
     for (var i = 0; i < node.arguments.length; i++) {
         var arg = node.arguments[i];
-        const requirePath = state.g.requireNodesMap[arg.name];
+        let requirePath = state.g.requireNodesMap && state.g.requireNodesMap[arg.name];
+        if (!requirePath) {
+            requirePath = state.g.reactClasses && state.g.reactClasses[arg.name];
+        }
+
         if (requirePath) {
             args.push({
                 path: requirePath,

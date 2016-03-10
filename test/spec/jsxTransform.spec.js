@@ -46,6 +46,14 @@ describe('jsxTransform', () => {
             './test/fixtures/higher_order_component_result.jsx'
         )
     });
+
+    it('should instrument higher order components in the same file', () => {
+        expectTransformation(
+            {},
+            './test/fixtures/higher_order_component_infile_input.jsx',
+            './test/fixtures/higher_order_component_infile_result.jsx'
+        )
+    });
 });
 
 // When the token _ignore_ is found in the expected output,

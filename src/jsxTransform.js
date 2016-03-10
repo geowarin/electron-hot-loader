@@ -13,11 +13,13 @@ function transform(filename, source, options) {
     const topLevelVisitor = require('./transforms/top-level-render-visitor');
     const higherOrderCommentsVisitor = require('./transforms/higher-order-comments-visitor');
     const higherOrderVisitor = require('./transforms/higher-order-visitor');
+    const classVisitor = require('./transforms/react-class-visitor');
     const jstransform = require('jstransform');
 
     let visitors = [];
     if (options.doNotInstrument !== true) {
         visitors = visitors
+            .concat(classVisitor)
             .concat(higherOrderCommentsVisitor)
             .concat(higherOrderVisitor)
             .concat(requireVisitor)
