@@ -24,11 +24,11 @@ describe('jsxTransform', () => {
     });
 
     it('should transform a JSX file, instrument it and keep the source map', () => {
-	expectTransformation(
-	    {sourceMapInline: true},
-	    './test/fixtures/transform_and_instrument_input.jsx',
-	    './test/fixtures/transform_and_instrument_result_with_source_map.jsx'
-	)
+        expectTransformation(
+            {sourceMapInline: true},
+            './test/fixtures/transform_and_instrument_input.jsx',
+            './test/fixtures/transform_and_instrument_result_with_source_map.jsx'
+        )
     });
 
     it('should transform and instrument React top level render', () => {
@@ -36,6 +36,22 @@ describe('jsxTransform', () => {
             {},
             './test/fixtures/transform_and_instrument_top_level_input.jsx',
             './test/fixtures/transform_and_instrument_top_level_result.jsx'
+        )
+    });
+
+    it('should transform and instrument higher order components', () => {
+        expectTransformation(
+            {higherOrderFunctions: ['connect']},
+            './test/fixtures/higher_order_component_input.jsx',
+            './test/fixtures/higher_order_component_result.jsx'
+        )
+    });
+
+    it('should instrument higher order components in the same file', () => {
+        expectTransformation(
+            {higherOrderFunctions: ['connect']},
+            './test/fixtures/higher_order_component_infile_input.jsx',
+            './test/fixtures/higher_order_component_infile_result.jsx'
         )
     });
 });

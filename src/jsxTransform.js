@@ -11,25 +11,31 @@ function transform(filename, source, options) {
     const jsxVisitors = require('./transforms/react-jsx-visitors').visitorList;
     const requireVisitor = require('./transforms/custom-require-visitor');
     const topLevelVisitor = require('./transforms/top-level-render-visitor');
+    const higherOrderVisitor = require('./transforms/higher-order-visitor');
+    const classVisitor = require('./transforms/react-class-visitor');
     const jstransform = require('jstransform');
 
     let visitors = [];
     if (options.doNotInstrument !== true) {
-        visitors = visitors.concat(requireVisitor).concat(topLevelVisitor);
+        visitors = visitors
+            .concat(classVisitor)
+            .concat(higherOrderVisitor)
+            .concat(requireVisitor)
+            .concat(topLevelVisitor);
     }
     visitors = visitors.concat(jsxVisitors);
 
     let result;
     if (options.sourceMapInline) {
-        result = jstransform.transform(visitors, source, {
+        const opts = Object.assign(options, {
             sourceMap: true,
-            filename: filename,
-            doNotInstrument: options.doNotInstrument
+            filename: filename
         });
+        result = jstransform.transform(visitors, source, opts);
         var map = inlineSourceMap(result.sourceMap, source, filename);
         result.code = result.code + '\n' + map;
     } else {
-        result = jstransform.transform(visitors, source, {doNotInstrument: options.doNotInstrument});
+        result = jstransform.transform(visitors, source, options);
     }
 
     return result.code;

@@ -1,5 +1,6 @@
 var jstransform = require('jstransform');
 var utils = require('jstransform/src/utils');
+var globalUtils = require('./utils');
 var requireRegister = require.resolve('../proxies');
 
 function requireVisitor(traverse, node, path, state) {
@@ -9,13 +10,9 @@ function requireVisitor(traverse, node, path, state) {
         state.g.alreadyAddedElectronHotRequire = true;
     }
 
-    var requireNodesMap = state.g.requireNodesMap;
-    if (!requireNodesMap) {
-        requireNodesMap = {};
-    }
-    requireNodesMap[node.declarations[0].id.name] = node.declarations[0].init.arguments[0].value;
-
-    state.g.requireNodesMap = requireNodesMap;
+    const key = node.declarations[0].id.name;
+    const requirePath = node.declarations[0].init.arguments[0].value;
+    globalUtils.addElementToGlobalMap(state, 'requireNodesMap', key, requirePath);
 
     utils.catchup(node.range[1], state);
 }
