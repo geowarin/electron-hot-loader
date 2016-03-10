@@ -62,6 +62,22 @@ For your tests you can add this to your mocha config, it will compile your jsx w
 --require electron-hot-loader/compiler
 ```
 
+## Higher order components
+
+A [higher order component](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.r6nqzwnwc)
+is a function that takes a component and returns another, decorated, component.
+
+Some libraries (like Redux with `connect`) use higher-order components.
+With only access to the AST, it is impossible to find out if a function will return a component
+or not.
+
+So you will need to explicitly register the names of the higher order components when installing
+`electron-hot-loader`:
+
+```js
+electronHot.install({higherOrderFunctions: ['connect']});
+```
+
 ## Goal
 
 Since electron is both node and a browser, I figured we could try experimenting hot reloading without webpack
