@@ -66,14 +66,15 @@ function visitReactTag(traverse, object, path, state) {
         // JSXMemberExpressions which look like Foo.Bar.Baz. This also handles
         // JSXIdentifiers that aren't fallback tags.
         // GWA: monkey patch
-        if (state.g.opts.doNotInstrument !== true) {
+        const requirePath = state.g.requireNodesMap && state.g.requireNodesMap[nameObject.name];
+        if (state.g.opts.doNotInstrument !== true && requirePath) {
             utils.append('__electronHot__.register(', state);
         }
         utils.move(nameObject.range[0], state);
         utils.catchup(nameObject.range[1], state);
         // GWA: monkey patch
-        if (state.g.opts.doNotInstrument !== true) {
-            utils.append(", require.resolve('" + state.g.requireNodesMap[nameObject.name] + "'))", state);
+        if (state.g.opts.doNotInstrument !== true && requirePath) {
+            utils.append(", require.resolve('" + requirePath + "'))", state);
         }
     }
 
