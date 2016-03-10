@@ -11,11 +11,17 @@ function transform(filename, source, options) {
     const jsxVisitors = require('./transforms/react-jsx-visitors').visitorList;
     const requireVisitor = require('./transforms/custom-require-visitor');
     const topLevelVisitor = require('./transforms/top-level-render-visitor');
+    const higherOrderCommentsVisitor = require('./transforms/higher-order-comments-visitor');
+    const higherOrderVisitor = require('./transforms/higher-order-visitor');
     const jstransform = require('jstransform');
 
     let visitors = [];
     if (options.doNotInstrument !== true) {
-        visitors = visitors.concat(requireVisitor).concat(topLevelVisitor);
+        visitors = visitors
+            .concat(higherOrderCommentsVisitor)
+            .concat(higherOrderVisitor)
+            .concat(requireVisitor)
+            .concat(topLevelVisitor);
     }
     visitors = visitors.concat(jsxVisitors);
 
