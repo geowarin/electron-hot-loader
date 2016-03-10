@@ -4,9 +4,8 @@ var globalUtils = require('./utils');
 
 function classVisitor(traverse, node, path, state) {
     const name = node.id.name;
-    const requirePath = '.';
+    const requirePath = '__filename';
     globalUtils.addElementToGlobalMap(state, 'reactClasses', name, requirePath);
-    console.log(state.g.reactClasses);
 }
 
 classVisitor.test = function (node, path, state) {

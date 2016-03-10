@@ -11,13 +11,11 @@ function higherOrderVisitor(traverse, node, path, state) {
         return true;
     }
 
-    state.g.higherOrder = removeLocation(node, state);
-
     componentArgs.forEach(component => {
         utils.catchup(component.arg.range[0], state);
         utils.append('__electronHot__.register(', state);
         utils.catchup(component.arg.range[1], state);
-        utils.append(", require.resolve('" + component.path + "'))", state);
+        utils.append(", require.resolve(" + component.path + "))", state);
     });
 
     return false;
@@ -25,12 +23,27 @@ function higherOrderVisitor(traverse, node, path, state) {
 
 higherOrderVisitor.test = function (node, path, state) {
     return (
-        state.g.higherOrder && state.g.higherOrder.length > 0 &&
-        matchesLocations(node, state.g.higherOrder) &&
+        state.g.opts.higherOrderFunctions && state.g.opts.higherOrderFunctions.length > 0 &&
         node.type === 'CallExpression' &&
-        node.arguments.length > 0
+        isCalleeHigherOrder(node, state)
+        //&&
+        //node.arguments.length > 0
     );
 };
+
+function isCalleeHigherOrder(node, state) {
+    if (!node.callee) {
+        return false;
+    }
+    let callee = node.callee;
+    while (callee) {
+        if (state.g.opts.higherOrderFunctions.indexOf(callee.name) >= 0) {
+            return true;
+        }
+        callee = callee.callee;
+    }
+    return false;
+}
 
 function findArgumentWhichMightBeComponent(node, state) {
     const args = [];
@@ -39,6 +52,8 @@ function findArgumentWhichMightBeComponent(node, state) {
         let requirePath = state.g.requireNodesMap && state.g.requireNodesMap[arg.name];
         if (!requirePath) {
             requirePath = state.g.reactClasses && state.g.reactClasses[arg.name];
+        } else {
+            requirePath = "'" + requirePath + "'";
         }
 
         if (requirePath) {
@@ -49,20 +64,6 @@ function findArgumentWhichMightBeComponent(node, state) {
         }
     }
     return args;
-}
-
-function matchesLocations(node, locations) {
-    return locations.indexOf(node.loc.start.line) !== -1;
-}
-
-function removeLocation(node, state) {
-    const result = [];
-    state.g.higherOrder.forEach(line => {
-        if (line !== node.loc.start.line) {
-            result.push(line)
-        }
-    });
-    return result;
 }
 
 module.exports = higherOrderVisitor;
