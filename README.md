@@ -78,6 +78,8 @@ So you will need to explicitly register the names of the higher order components
 electronHot.install({higherOrderFunctions: ['connect']});
 ```
 
+A demo of electron-hot-loader working with redux is available [on the redux branch](https://github.com/geowarin/electron-hot-boilerplate#redux) of electron-hot-boilerplate.
+
 ## Goal
 
 Since electron is both node and a browser, I figured we could try experimenting hot reloading without webpack
