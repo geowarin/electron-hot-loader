@@ -1,6 +1,6 @@
 {
   "name": "electron-hot-loader",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Hot reloading for React components in electron without babel nor webpack",
   "main": "src/index.js",
   "scripts": {
