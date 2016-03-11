@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports.watchJsx = require('./watchJsx');
 module.exports.watchCss = require('./watchCss');

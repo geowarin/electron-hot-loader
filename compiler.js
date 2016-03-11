@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Can be used as a mocha compiler
 // mocha --compilers electron-hot/compiler.js

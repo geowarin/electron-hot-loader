@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const createProxy = require('react-proxy/modules/index');
 
@@ -10,24 +10,24 @@ module.exports.registerRoot = registerRoot;
 module.exports.getProxy = getProxy;
 module.exports.getRoot = getRoot;
 
-function registerRoot(root) {
-    rootInstance = root;
+function registerRoot (root) {
+  rootInstance = root;
 }
 
-function register(Component, location) {
-    const proxy = createProxy.default(Component);
+function register (Component, location) {
+  const proxy = createProxy.default(Component);
 
-    if (!proxies[location]) {
-        console.debug('Registered proxy', location);
-        proxies[location] = proxy;
-    }
-    return proxies[location].get();
+  if (!proxies[location]) {
+    console.debug('Registered proxy', location);
+    proxies[location] = proxy;
+  }
+  return proxies[location].get();
 }
 
-function getProxy(location) {
-    return proxies[location];
+function getProxy (location) {
+  return proxies[location];
 }
 
-function getRoot() {
-    return rootInstance;
+function getRoot () {
+  return rootInstance;
 }
