@@ -54,6 +54,14 @@ describe('jsxTransform', () => {
             './test/fixtures/higher_order_component_infile_result.jsx'
         )
     });
+
+    it('should not instrument components in node_modules', () => {
+	expectTransformation(
+	    {},
+	    './test/fixtures/do_not_instrument_modules_input.jsx',
+	    './test/fixtures/do_not_instrument_modules_result.jsx'
+	)
+    });
 });
 
 // When the token _ignore_ is found in the expected output,

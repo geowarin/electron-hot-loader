@@ -32,7 +32,7 @@ function transform(filename, source, options) {
             filename: filename
         });
         result = jstransform.transform(visitors, source, opts);
-        var map = inlineSourceMap(result.sourceMap, source, filename);
+	const map = inlineSourceMap(result.sourceMap, source, filename);
         result.code = result.code + '\n' + map;
     } else {
         result = jstransform.transform(visitors, source, options);
@@ -50,8 +50,11 @@ function install(options) {
     if (!options.hasOwnProperty('sourceMapInline')) {
         options.sourceMapInline = true;
     }
+    if (!options.hasOwnProperty('extension')) {
+	options.extension = '.jsx';
+    }
 
-    require.extensions[options.extension || '.jsx'] = function loadJsx(module, filename) {
+    require.extensions[options.extension] = function loadJsx(module, filename) {
         var content = require('fs').readFileSync(filename, 'utf8');
         try {
             var instrumented = transform(filename, content, options);

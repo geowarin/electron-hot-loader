@@ -12,7 +12,9 @@ function requireVisitor(traverse, node, path, state) {
 
     const key = node.declarations[0].id.name;
     const requirePath = node.declarations[0].init.arguments[0].value;
-    globalUtils.addElementToGlobalMap(state, 'requireNodesMap', key, requirePath);
+    if (isOwnComponent(requirePath)) {
+	globalUtils.addElementToGlobalMap(state, 'requireNodesMap', key, requirePath);
+    }
 
     utils.catchup(node.range[1], state);
 }
@@ -27,5 +29,9 @@ requireVisitor.test = function (node, path, state) {
         node.declarations[0].init.callee.name === 'require'
     );
 };
+
+function isOwnComponent(requirePath) {
+    return requirePath.indexOf('.') === 0;
+}
 
 module.exports = requireVisitor;
