@@ -29,7 +29,7 @@ requireVisitor.test = function (node, path, state) {
 };
 
 function isOwnComponent (requirePath) {
-  return requirePath.indexOf('.') === 0;
+  return requirePath && requirePath.indexOf('.') === 0;
 }
 
 module.exports = requireVisitor;
