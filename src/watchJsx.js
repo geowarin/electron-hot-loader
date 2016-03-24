@@ -16,7 +16,7 @@ module.exports = function watchJsx (directories, options) {
           ' and that require("electron-hot-loader").install() has been called before any JSX is required.');
         return;
       }
-      delete require.cache[require.resolve(f)];
+      delete require.cache[f];
       var newComponent = require(f);
       cachedProxy.update(newComponent);
       deepForceUpdate(rootInstance);

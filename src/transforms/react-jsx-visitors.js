@@ -74,7 +74,7 @@ function visitReactTag (traverse, object, path, state) {
     utils.catchup(nameObject.range[1], state);
     // GWA: monkey patch
     if (state.g.opts.doNotInstrument !== true && requirePath) {
-      utils.append(", require.resolve('" + requirePath + "'))", state);
+      utils.append(", require.resolve('" + requirePath.replace(/\\/g, '/') + "'))", state);
     }
   }
 
