@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/electron-hot-loader.svg)](https://www.npmjs.com/package/electron-hot-loader)
 [![Build Status](https://travis-ci.org/geowarin/electron-hot-loader.svg?branch=master)](https://travis-ci.org/geowarin/electron-hot-loader)
+[![Build status](https://ci.appveyor.com/api/projects/status/29rs2pt350ravclk?svg=true)](https://ci.appveyor.com/project/geowarin/electron-hot-loader)
 
 Hot reloading for React components in electron without babel nor webpack
 
@@ -103,7 +104,7 @@ The `ReactDOM.render` method has a distinctive signature that we can use to iden
 
 When a user component is included in a JSX file, it is compiled to `React.createElement()`.
 We can wrap all those calls in a `register()` method, keep track of all the components created that way, and wrap them with `react-proxy`.
-  
+
 Then, it is just a matter of watching the file system to know which components have been updated and force a re-render
 on them.
 
@@ -126,7 +127,7 @@ Critiques and ideas are warmly welcomed so do not hesitate to open issues and su
 
 ## Example
 
-Have a look at [electron-hot-boilerplate](https://github.com/geowarin/electron-hot-boilerplate) for a complete example. 
+Have a look at [electron-hot-boilerplate](https://github.com/geowarin/electron-hot-boilerplate) for a complete example.
 
 ## Thanks
 
