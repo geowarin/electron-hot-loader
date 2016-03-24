@@ -21,13 +21,13 @@ describeWithDom('loadJsx', () => {
   it('should throw when a component contains an error', () => {
     const exceptionMessage = getExceptionMessage(() => require('./views/ErrorComponent.jsx'));
     expect(exceptionMessage)
-      .toMatch(/^Error compiling [\w\/\-\\]+?ErrorComponent\.jsx: Parse Error: Line 10: Unexpected token }/);
+      .toMatch(/^Error compiling [\w\/\-\\:]+?ErrorComponent\.jsx: Parse Error: Line 10: Unexpected token }/);
   });
 
   it('should throw a simple error when a component contains a component which contains an error', () => {
     const exceptionMessage = getExceptionMessage(() => require('./views/AppUsingErrorComponent.jsx'));
     expect(exceptionMessage)
-      .toMatch(/^Error compiling [\w\/\-\\]+?ErrorComponent\.jsx: Parse Error: Line 10: Unexpected token }/);
+      .toMatch(/^Error compiling [\w\/\-\\:]+?ErrorComponent\.jsx: Parse Error: Line 10: Unexpected token }/);
   });
 });
 
