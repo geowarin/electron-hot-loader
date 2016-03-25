@@ -86,7 +86,7 @@ function expectTransformation (options, fileToTransform, actualFile) {
 
   let expected = fs.readFileSync(actualFile).toString();
 
-  expected = expected.replace(/_electronHotLocation_/m, require.resolve('../../src/proxies').replace(/\\/g, '/'));
+  expected = expected.replace(/_electronHotLocation_/m, require.resolve('../../src/proxies'));
   transformed = replaceIgnored(expected, transformed);
 
   expect(transformed).toEqual(expected);

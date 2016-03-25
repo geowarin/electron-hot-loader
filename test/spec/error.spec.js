@@ -1,13 +1,9 @@
-/* global it */
+/* global it,describe,before,after */
 'use strict';
 
 const expect = require('expect');
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-
 describe('loadJsx', () => {
-
   before(() => {
     const electronHot = require('../../src/index');
     electronHot.install();
