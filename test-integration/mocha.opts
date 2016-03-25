@@ -2,4 +2,3 @@
 --recursive ./test-integration/**/*spec.jsx
 --full-trace
 --reporter spec
---require ./compiler
