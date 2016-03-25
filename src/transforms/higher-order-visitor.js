@@ -13,7 +13,7 @@ function higherOrderVisitor (traverse, node, path, state) {
     utils.catchup(component.arg.range[0], state);
     utils.append('__electronHot__.register(', state);
     utils.catchup(component.arg.range[1], state);
-    utils.append(', require.resolve(' + component.path.replace(/\\/g, '/') + '))', state);
+    utils.append(', require.resolve(' + component.path + '))', state);
   });
 
   return false;
