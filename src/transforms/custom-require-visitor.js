@@ -1,10 +1,10 @@
 var utils = require('jstransform/src/utils');
 var globalUtils = require('./utils');
-var requireRegister = require.resolve('../proxies');
+var proxiesPath = require.resolve('../proxies').replace(/\\/g, '/');
 
 function requireVisitor (traverse, node, path, state) {
   if (!state.g.alreadyAddedElectronHotRequire) {
-    utils.append("var __electronHot__ = require('" + requireRegister + "');\n", state);
+    utils.append("var __electronHot__ = require('" + proxiesPath + "');\n", state);
     state.g.alreadyAddedElectronHotRequire = true;
   }
 
