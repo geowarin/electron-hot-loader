@@ -1,17 +1,21 @@
-/* global it,before,after */
+/* global describe,it,before,after */
 'use strict';
 
 const expect = require('expect');
-const describeWithDom = require('describe-with-dom');
+var jsdom = require('jsdom-global');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const temp = require('temp').track();
 
 let rootDir;
+let cleanup;
 
-describeWithDom('loadJsx', () => {
+describe('loadJsx', function () {
+  this.timeout(10000);
+
   before(() => {
+    cleanup = jsdom();
     const electronHot = require('../src/index');
     electronHot.install();
 
@@ -33,21 +37,39 @@ describeWithDom('loadJsx', () => {
     // our html contains Hello
     expect(getHtmlBody()).toContain('Hello');
 
-    // We change the file
-    changeFile(appJsx, (content) => content.replace('Hello', 'Hi'));
-
-    // A few moments later, html changes thanks to hot reload
-    setTimeout(() => {
-      expect(getHtmlBody()).toContain('Hi');
-      done();
-    }, 300);
+    doLater(() => changeFile(appJsx, content => content.replace('Hello', 'Hi')))
+      .then(() => waitFor(() => getHtmlBody().match('Hi')))
+      .then(done);
   });
 
   after(() => {
+    cleanup();
     delete require.extensions['.jsx'];
     temp.cleanupSync();
   });
 });
+
+function waitFor (condition) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (condition()) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 100);
+    }, 0);
+  });
+}
+
+function doLater (thing) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      thing();
+      resolve();
+    }, 500);
+  });
+}
 
 function changeFile (filePath, transform) {
   let content = fs.readFileSync(filePath).toString();

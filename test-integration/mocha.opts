@@ -1,4 +1,4 @@
 -u bdd
---recursive ./test-integration/**/*spec.jsx
+--recursive ./test-integration/**/*spec.js
 --full-trace
 --reporter spec
