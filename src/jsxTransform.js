@@ -55,17 +55,35 @@ function install (options) {
 
   require.extensions[options.extension] = function loadJsx (module, filename) {
     var content = require('fs').readFileSync(filename, 'utf8');
-    try {
-      var instrumented = transform(filename, content, options);
-      module._compile(instrumented, filename);
-    } catch (e) {
-      if (e.originalError) {
-        throw e.originalError;
-      }
-      e.message = 'Error compiling ' + filename + ': ' + e.message;
-      e.originalError = e;
-      throw e;
-    }
+    var instrumented = tryInstrumenting(filename, content, options);
+    tryCompiling(module, instrumented, filename);
   };
   installed = true;
+}
+
+function tryInstrumenting (filename, content, options) {
+  try {
+    var instrumented = transform(filename, content, options);
+  } catch (e) {
+    // When instrumenting nested components, we want to see only
+    // the first, happening in the innermost component
+    if (e.originalError) {
+      throw e.originalError;
+    }
+    e.message = 'Error compiling ' + filename + ': ' + e.message;
+    e.originalError = e;
+    throw e;
+  }
+  return instrumented;
+}
+
+function tryCompiling (module, instrumented, filename) {
+  try {
+    module._compile(instrumented, filename);
+  } catch (e) {
+    // Chrome does not always show the stack trace
+    // Better show it twice than never
+    console.error(e.stack);
+    throw e;
+  }
 }

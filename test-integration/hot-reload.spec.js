@@ -12,7 +12,7 @@ let rootDir;
 let cleanup;
 
 describe('loadJsx', function () {
-  this.timeout(10000);
+  this.timeout(5000);
 
   before(() => {
     cleanup = jsdom();
