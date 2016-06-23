@@ -44,6 +44,23 @@ function isTagName (name) {
   return tagConvention.test(name);
 }
 
+function getMemberExpressionName (node) {
+  const left = node.object;
+  const right = node.property;
+
+  let leftName = left.name;
+  let rightName = right.name;
+
+  if (left.type === Syntax.JSXMemberExpressions) {
+    leftName = getMemberExpressionName(left);
+  }
+  if (right.type === Syntax.JSXMemberExpressions) {
+    rightName = getMemberExpressionName(right);
+  }
+
+  return leftName + '.' + rightName;
+}
+
 function visitReactTag (traverse, object, path, state) {
   var openingElement = object.openingElement;
   var nameObject = openingElement.name;
@@ -66,7 +83,15 @@ function visitReactTag (traverse, object, path, state) {
     // JSXMemberExpressions which look like Foo.Bar.Baz. This also handles
     // JSXIdentifiers that aren't fallback tags.
     // GWA: monkey patch
-    const requirePath = state.g.requireNodesMap && state.g.requireNodesMap[nameObject.name];
+    let name = nameObject.name;
+    let rest = '';
+    if (nameObject.type === Syntax.JSXMemberExpression) {
+      let parts = getMemberExpressionName(nameObject).split('.');
+      name = parts[0];
+      rest = parts.slice(1).join('.');
+    }
+
+    const requirePath = state.g.requireNodesMap && state.g.requireNodesMap[name];
     if (state.g.opts.doNotInstrument !== true && requirePath) {
       utils.append('__electronHot__.register(', state);
     }
@@ -74,7 +99,7 @@ function visitReactTag (traverse, object, path, state) {
     utils.catchup(nameObject.range[1], state);
     // GWA: monkey patch
     if (state.g.opts.doNotInstrument !== true && requirePath) {
-      utils.append(", require.resolve('" + requirePath.replace(/\\/g, '/') + "'))", state);
+      utils.append(", require.resolve('" + requirePath.replace(/\\/g, '/') + "'), '" + rest + "')", state);
     }
   }
 

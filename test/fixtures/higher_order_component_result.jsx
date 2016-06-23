@@ -5,4 +5,4 @@ const Component = require('./Component.jsx');
 
 module.exports = connect(
     (state) => ({counter: state.counter})
-)(__electronHot__.register(Component, require.resolve('./Component.jsx')));
+)(__electronHot__.register(Component, require.resolve('./Component.jsx'), ''));
