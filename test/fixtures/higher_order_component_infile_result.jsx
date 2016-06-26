@@ -8,4 +8,4 @@ class Component extends React.Component {
 
 module.exports = connect(
     (state) => ({counter: state.counter})
-)(__electronHot__.register(Component, require.resolve(__filename)));
+)(__electronHot__.register(Component, require.resolve(__filename), ''));

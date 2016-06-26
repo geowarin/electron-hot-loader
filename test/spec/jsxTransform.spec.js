@@ -62,6 +62,14 @@ describe('jsxTransform', () => {
       './test/fixtures/do_not_instrument_modules_result.jsx'
     );
   });
+
+  it('should transform and instrument import with multiple components', () => {
+    expectTransformation(
+      {},
+      './test/fixtures/multiple_transform_and_instrument_input.jsx',
+      './test/fixtures/multiple_transform_and_instrument_output.jsx'
+    );
+  });
 });
 
 // When the token _ignore_ is found in the expected output,

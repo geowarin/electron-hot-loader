@@ -4,7 +4,7 @@ const OtherComponent = require('./OtherComponent.jsx');
 
 module.exports = class Component extends React.Component {
     render() {
-        return React.createElement(__electronHot__.register(OtherComponent, require.resolve('./OtherComponent.jsx')), null)
+        return React.createElement(__electronHot__.register(OtherComponent, require.resolve('./OtherComponent.jsx'), ''), null)
     }
 };
 
