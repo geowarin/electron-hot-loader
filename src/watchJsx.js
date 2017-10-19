@@ -1,14 +1,17 @@
 'use strict';
 
-const watchGlob = require('watch-glob');
+const path = require('path');
+
+const watchGlob = require('glob-watcher');
 const deepForceUpdate = require('react-deep-force-update');
 const proxies = require('./proxies');
 
 module.exports = function watchJsx (directories, options) {
-  const opts = Object.assign({}, options, {callbackArg: 'absolute'});
-  watchGlob(directories, opts, f => {
-    if (proxies.hasProxies(f)) {
-      console.debug('Hot reload', f);
+  const watcher = watchGlob(directories, options);
+  watcher.on('all', (event, f) => {
+    const absPath = path.resolve(path.join(options.cwd || '.', f));
+    if (proxies.hasProxies(absPath)) {
+      console.debug('Hot reload', absPath);
       const rootInstance = proxies.getRoot();
       if (!rootInstance) {
         console.warn('Root component has not been registered. Make sure that you use ReactDOM.render() in a JSX file' +
@@ -16,10 +19,10 @@ module.exports = function watchJsx (directories, options) {
         return;
       }
 
-      delete require.cache[f];
-      let module = require(f);
+      delete require.cache[absPath];
+      let module = require(absPath);
 
-      proxies.updateProxies(f, module);
+      proxies.updateProxies(absPath, module);
 
       deepForceUpdate(rootInstance);
     }
