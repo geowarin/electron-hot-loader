@@ -9,7 +9,7 @@ const proxies = require('./proxies');
 module.exports = function watchJsx (directories, options) {
   const watcher = watchGlob(directories, options);
   watcher.on('all', (event, f) => {
-    const absPath = path.resolve(path.join(options.cwd || '.', f));
+    const absPath = path.resolve(path.join((options && options.cwd) || '.', f));
     if (proxies.hasProxies(absPath)) {
       console.debug('Hot reload', absPath);
       const rootInstance = proxies.getRoot();
