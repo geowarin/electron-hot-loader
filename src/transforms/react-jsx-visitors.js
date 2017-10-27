@@ -113,7 +113,7 @@ function visitReactTag (traverse, object, path, state) {
 
   // if we don't have any attributes, pass in null
   if (hasAtLeastOneSpreadProperty) {
-    utils.append('React.__spread({', state);
+    utils.append('Object.assign({', state);
   } else if (hasAttributes) {
     utils.append('{', state);
   } else {
