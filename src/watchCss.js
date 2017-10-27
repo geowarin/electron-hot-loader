@@ -1,10 +1,10 @@
 'use strict';
 
-const watchGlob = require('watch-glob');
+const watchGlob = require('glob-watcher');
 
 module.exports = function watchCss (directories, options) {
-  const opts = Object.assign({}, options, {callbackArg: 'absolute'});
-  watchGlob(directories, opts, f => {
+  const watcher = watchGlob(directories, options);
+  watcher.on('all', (event, f) => {
     console.debug('Css hot reload', f);
     var links = document.getElementsByTagName('link');
     for (var i = 0; i < links.length; i++) {
