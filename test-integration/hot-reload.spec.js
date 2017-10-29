@@ -46,6 +46,7 @@ describe('loadJsx', function () {
     cleanup();
     delete require.extensions['.jsx'];
     temp.cleanupSync();
+    // TODO "Unknown" handles are left open. Forcing mocha to exit works but should investigate
   });
 });
 

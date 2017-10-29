@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test:unit": "mocha",
-    "test:integ": "mocha --opts test-integration/mocha.opts",
+    "test:integ": "mocha --exit --opts test-integration/mocha.opts",
     "lint": "semistandard",
     "test": "npm-run-all test:* lint",
     "prepublish": "npm run test"
@@ -26,20 +26,20 @@
   },
   "homepage": "https://github.com/geowarin/electron-hot-loader#readme",
   "dependencies": {
-    "esprima-fb": "^15001.1.0-dev-harmony-fb",
+    "esprima-fb": "^15001.1001.0-dev-harmony-fb",
+    "glob-watcher": "^4.0.0",
     "jstransform": "11.0.3",
-    "react-deep-force-update": "2.0.1",
-    "react-proxy": "2.0.3",
-    "watch-glob": "0.1.3"
+    "react-deep-force-update": "2.1.1",
+    "react-proxy": "2.0.8"
   },
   "devDependencies": {
-    "expect": "^1.14.0",
-    "jsdom": "^8.1.0",
-    "jsdom-global": "^1.7.0",
-    "mocha": "^2.4.5",
-    "npm-run-all": "^1.5.2",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "expect": "^1.20.2",
+    "jsdom": "^11.3.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^4.0.1",
+    "npm-run-all": "^4.1.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "semistandard": "^7.0.5",
     "temp": "^0.8.3"
   },
